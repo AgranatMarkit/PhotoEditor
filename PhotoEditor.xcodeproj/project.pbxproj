@@ -8,24 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		4D99DDD523523854009B8FA1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D99DDD423523854009B8FA1 /* AppDelegate.m */; };
-		4D99DDD823523854009B8FA1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D99DDD723523854009B8FA1 /* ViewController.m */; };
-		4D99DDDB23523854009B8FA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D99DDD923523854009B8FA1 /* Main.storyboard */; };
 		4D99DDDD23523857009B8FA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D99DDDC23523857009B8FA1 /* Assets.xcassets */; };
 		4D99DDE023523857009B8FA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D99DDDE23523857009B8FA1 /* LaunchScreen.storyboard */; };
 		4D99DDE323523857009B8FA1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D99DDE223523857009B8FA1 /* main.m */; };
+		4D99DDED23523A3C009B8FA1 /* MainFlowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D99DDEC23523A3C009B8FA1 /* MainFlowViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4D99DDD023523854009B8FA1 /* PhotoEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D99DDD323523854009B8FA1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4D99DDD423523854009B8FA1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		4D99DDD623523854009B8FA1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		4D99DDD723523854009B8FA1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		4D99DDDA23523854009B8FA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4D99DDDC23523857009B8FA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D99DDDF23523857009B8FA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4D99DDE123523857009B8FA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D99DDE223523857009B8FA1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4D99DDEB23523A3C009B8FA1 /* MainFlowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainFlowViewController.h; sourceTree = "<group>"; };
+		4D99DDEC23523A3C009B8FA1 /* MainFlowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainFlowViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,17 +56,32 @@
 		4D99DDD223523854009B8FA1 /* PhotoEditor */ = {
 			isa = PBXGroup;
 			children = (
-				4D99DDD323523854009B8FA1 /* AppDelegate.h */,
-				4D99DDD423523854009B8FA1 /* AppDelegate.m */,
-				4D99DDD623523854009B8FA1 /* ViewController.h */,
-				4D99DDD723523854009B8FA1 /* ViewController.m */,
-				4D99DDD923523854009B8FA1 /* Main.storyboard */,
+				4D99DDEA23523A2A009B8FA1 /* MainFlowViewController */,
+				4D99DDE9235239FA009B8FA1 /* AppDelegate */,
 				4D99DDDC23523857009B8FA1 /* Assets.xcassets */,
-				4D99DDDE23523857009B8FA1 /* LaunchScreen.storyboard */,
 				4D99DDE123523857009B8FA1 /* Info.plist */,
+				4D99DDDE23523857009B8FA1 /* LaunchScreen.storyboard */,
 				4D99DDE223523857009B8FA1 /* main.m */,
 			);
 			path = PhotoEditor;
+			sourceTree = "<group>";
+		};
+		4D99DDE9235239FA009B8FA1 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				4D99DDD323523854009B8FA1 /* AppDelegate.h */,
+				4D99DDD423523854009B8FA1 /* AppDelegate.m */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		4D99DDEA23523A2A009B8FA1 /* MainFlowViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4D99DDEB23523A3C009B8FA1 /* MainFlowViewController.h */,
+				4D99DDEC23523A3C009B8FA1 /* MainFlowViewController.m */,
+			);
+			path = MainFlowViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,7 +143,6 @@
 			files = (
 				4D99DDE023523857009B8FA1 /* LaunchScreen.storyboard in Resources */,
 				4D99DDDD23523857009B8FA1 /* Assets.xcassets in Resources */,
-				4D99DDDB23523854009B8FA1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,23 +153,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D99DDD823523854009B8FA1 /* ViewController.m in Sources */,
 				4D99DDE323523857009B8FA1 /* main.m in Sources */,
 				4D99DDD523523854009B8FA1 /* AppDelegate.m in Sources */,
+				4D99DDED23523A3C009B8FA1 /* MainFlowViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4D99DDD923523854009B8FA1 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4D99DDDA23523854009B8FA1 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4D99DDDE23523857009B8FA1 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -287,6 +291,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 95GSDCWS4D;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = PhotoEditor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -304,6 +309,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 95GSDCWS4D;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = PhotoEditor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
