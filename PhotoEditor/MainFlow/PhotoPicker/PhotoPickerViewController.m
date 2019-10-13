@@ -10,15 +10,23 @@
 #import "PhotoPreviewViewController.h"
 #import "UIViewController+ContainerViewHelpers.h"
 
-@interface PhotoPickerViewController ()
+@interface PhotoPickerViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
+@property (nonatomic) OnImagePick onImagePick;
 @property (nonatomic) UIView *previewView;
 @property (nonatomic) UIButton *takePhotoButton;
+@property (nonatomic) UIButton *openGalleryButton;
 @property (nonatomic) PhotoPreviewViewController *photoPreviewViewController;
 
 @end
 
 @implementation PhotoPickerViewController
+
++ (instancetype)pickerWithOnImagePick:(OnImagePick)onImagePick {
+    PhotoPickerViewController *photoPickerViewController = PhotoPickerViewController.new;
+    photoPickerViewController.onImagePick = onImagePick;
+    return photoPickerViewController;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,19 +39,22 @@
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     self.takePhotoButton.layer.cornerRadius = CGRectGetHeight(self.takePhotoButton.bounds) / 2;
+    self.openGalleryButton.layer.cornerRadius = CGRectGetHeight(self.openGalleryButton.bounds) / 2;
 }
 
 - (void)setupViews {
-    self.view.backgroundColor = UIColor.greenColor;
+    self.view.backgroundColor = UIColor.blackColor;
     
-    UIView *previewView = UIView.new;
-    self.previewView = previewView;
-    previewView.backgroundColor = UIColor.redColor;
+    self.previewView = UIView.new;
     
-    UIButton *takePhotoButton = UIButton.new;
-    self.takePhotoButton = takePhotoButton;
+    self.takePhotoButton = UIButton.new;
     [self.takePhotoButton setBackgroundColor:UIColor.whiteColor];
     [self.takePhotoButton addTarget:self action:@selector(takePhoto) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.openGalleryButton = UIButton.new;
+    [self.openGalleryButton setBackgroundColor:UIColor.whiteColor];
+    [self.openGalleryButton setImage:[UIImage imageNamed:@"Gallery"] forState:UIControlStateNormal];
+    [self.openGalleryButton addTarget:self action:@selector(openGallery) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)setupLayout {
@@ -62,6 +73,13 @@
     NSLayoutConstraint *takePhotoButtonHeight = [self.takePhotoButton.heightAnchor constraintEqualToConstant:60.f];
     NSLayoutConstraint *takePhotoButtonWidth = [self.takePhotoButton.widthAnchor constraintEqualToConstant:60.f];
     
+    self.openGalleryButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.openGalleryButton];
+    NSLayoutConstraint *openGalleryButtonLeading = [self.openGalleryButton.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor constant:8.f];
+    NSLayoutConstraint *openGalleryButtonHeight = [self.openGalleryButton.heightAnchor constraintEqualToAnchor:self.takePhotoButton.heightAnchor];
+    NSLayoutConstraint *openGalleryButtonWidth = [self.openGalleryButton.widthAnchor constraintEqualToAnchor:self.takePhotoButton.widthAnchor];
+    NSLayoutConstraint *openGalleryButtonCenterY = [self.openGalleryButton.centerYAnchor constraintEqualToAnchor:self.takePhotoButton.centerYAnchor];
+    
     [NSLayoutConstraint activateConstraints:@[
         previewViewLeading,
         previewViewTop,
@@ -70,27 +88,38 @@
         takePhotoButtonBottom,
         takePhotoButtonCenterX,
         takePhotoButtonHeight,
-        takePhotoButtonWidth]];
+        takePhotoButtonWidth,
+        openGalleryButtonLeading,
+        openGalleryButtonHeight,
+        openGalleryButtonWidth,
+        openGalleryButtonCenterY
+    ]];
 }
 
 - (void)takePhoto {
     __weak __typeof(self) weakSelf = self;
     [self.photoPreviewViewController obtainImageData:^(NSData * _Nonnull imageData) {
         __typeof(self) self = weakSelf;
-        [self didObtainImageData:imageData];
+        if (self.onImagePick)
+            self.onImagePick([UIImage imageWithData:imageData]);
     }];
 }
 
-- (void)didObtainImageData:(NSData *)imageData {
-    UIImage *img = [UIImage imageWithData:imageData];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:img];
-    imageView.frame = self.view.bounds;
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
-    imageView.backgroundColor = UIColor.blackColor;
-    [self.view addSubview:imageView];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [imageView removeFromSuperview];
-    });
+#pragma mark - UIImagePicker
+
+- (void)openGallery {
+    UIImagePickerController *picker = UIImagePickerController.new;
+    picker.delegate = self;
+    [self presentViewController:picker animated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
+    __weak __typeof(self) weakSelf = self;
+    [self dismissViewControllerAnimated:YES completion:^{
+        __typeof(self) self = weakSelf;
+        if (self.onImagePick)
+            self.onImagePick(info[UIImagePickerControllerOriginalImage] ?: UIImage.new);
+    }];
 }
 
 @end

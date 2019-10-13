@@ -19,8 +19,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.whiteColor;
-    PhotoPickerViewController *photoPickerViewController = PhotoPickerViewController.new;
+    [self presentImagePicker];
+}
+
+- (void)presentImagePicker {
+    __weak __typeof(self) weakSelf = self;
+    PhotoPickerViewController *photoPickerViewController = [PhotoPickerViewController pickerWithOnImagePick:^(UIImage *pickedImage) {
+        __typeof(self) self = weakSelf;
+        [self presentImageFilterEditorWithImage:pickedImage];
+    }];
     [self addChild:photoPickerViewController];
+}
+
+- (void)presentImageFilterEditorWithImage:(UIImage *)image {
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    imageView.backgroundColor = UIColor.whiteColor;
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    imageView.frame = self.view.bounds;
+    imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.view addSubview:imageView];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [imageView removeFromSuperview];
+    });
 }
 
 @end

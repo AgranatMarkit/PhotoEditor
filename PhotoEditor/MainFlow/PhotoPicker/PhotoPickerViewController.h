@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-NS_ASSUME_NONNULL_BEGIN
+typedef void(^OnImagePick)(UIImage *pickedImage);
 
 @interface PhotoPickerViewController : UIViewController
 
-@end
+- (instancetype)init NS_UNAVAILABLE;
+- (instancetype)initWithCoder:(NSCoder *)coder NS_UNAVAILABLE;
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil  NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
++ (instancetype)pickerWithOnImagePick:(OnImagePick)onImagePick;
 
-NS_ASSUME_NONNULL_END
+@end
