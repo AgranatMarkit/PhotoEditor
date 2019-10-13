@@ -7,6 +7,8 @@
 //
 
 #import "MainFlowViewController.h"
+#import "PhotoPickerViewController.h"
+#import "UIViewController+ContainerViewHelpers.h"
 
 @interface MainFlowViewController ()
 
@@ -17,6 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.whiteColor;
+    PhotoPickerViewController *photoPickerViewController = PhotoPickerViewController.new;
+    [self addChild:photoPickerViewController];
 }
 
 @end

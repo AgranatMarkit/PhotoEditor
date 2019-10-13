@@ -11,10 +11,18 @@
 @implementation UIViewController (ContainerViewHelpers)
 
 - (void)addChild:(UIViewController *)child {
+    [self addChild:child toContainerView:self.view];
+}
+
+- (void)addChild:(UIViewController *)child toContainerView:(UIView *)containerView {
     [self addChildViewController:child];
-    child.view.frame = self.view.bounds;
-    child.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self.view addSubview:child.view];
+    containerView.translatesAutoresizingMaskIntoConstraints = NO;
+    child.view.translatesAutoresizingMaskIntoConstraints = NO;
+    [containerView addSubview:child.view];
+    [child.view.leadingAnchor constraintEqualToAnchor:containerView.leadingAnchor].active = YES;
+    [child.view.topAnchor constraintEqualToAnchor:containerView.topAnchor].active = YES;
+    [child.view.trailingAnchor constraintEqualToAnchor:containerView.trailingAnchor].active = YES;
+    [child.view.bottomAnchor constraintEqualToAnchor:containerView.bottomAnchor].active = YES;
     [child didMoveToParentViewController:self];
 }
 

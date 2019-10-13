@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIViewController (ContainerViewHelpers)
 
 - (void)addChild:(UIViewController *)child;
+- (void)addChild:(UIViewController *)child toContainerView:(UIView *)containerView;
 - (void)removeFromParent;
 
 @end
