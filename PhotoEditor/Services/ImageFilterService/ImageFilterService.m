@@ -43,7 +43,7 @@
     });
 }
 
-- (void)applyFilter:(ImageFilter *)filter onImage:(UIImage *)image withCallback:(void (^)(UIImage * _Nonnull))callback {
+- (void)applyFilter:(ImageFilter *)filter onImage:(UIImage *)image withCallback:(void (^)(UIImage *newImage))callback {
     __weak __typeof(self) weakSelf = self;
     dispatch_async(self.imageServiceQueue, ^{
         __typeof(self) self = weakSelf;
@@ -53,13 +53,12 @@
 
 - (UIImage *)addFilter:(ImageFilter *)filter toImage:(UIImage *)image {
     if (filter.isNone) return image;
-    CIImage *original = image.CIImage;
-    CIFilter *ciFilter = [CIFilter filterWithName:filter.value];
-    [ciFilter setValue:original forKey:@"inputImage"];
-    CIImage *outputImage = ciFilter.outputImage;
     CIContext *context = CIContext.context;
+    CIFilter *ciFilter = [CIFilter filterWithName:filter.value];
+    [ciFilter setValue:[CIImage imageWithCGImage:image.CGImage] forKey:@"inputImage"];
+    CIImage *outputImage = ciFilter.outputImage;
     CGImageRef cgImage = [context createCGImage:outputImage fromRect:outputImage.extent];
-    UIImage *result = [UIImage imageWithCGImage:cgImage];
+    UIImage *result = [UIImage imageWithCGImage:cgImage scale:1.f orientation:image.imageOrientation];
     CGImageRelease(cgImage);
     return result;
 }

@@ -8,9 +8,15 @@
 
 #import "MainFlowViewController.h"
 #import "PhotoPickerViewController.h"
+#import "PhotoFilterEditorViewController.h"
+#import "ImageFilterService.h"
 #import "UIViewController+ContainerViewHelpers.h"
 
 @interface MainFlowViewController ()
+
+@property (nonatomic) ImageFilterService *imageFilterService;
+@property (nonatomic, weak) PhotoPickerViewController *photoPickerViewController;
+@property (nonatomic, weak) PhotoFilterEditorViewController *photoFilterEditorViewController;
 
 @end
 
@@ -19,6 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.whiteColor;
+    self.imageFilterService = ImageFilterService.new;
     [self presentImagePicker];
 }
 
@@ -27,20 +34,22 @@
     PhotoPickerViewController *photoPickerViewController = [PhotoPickerViewController pickerWithOnImagePick:^(UIImage *pickedImage) {
         __typeof(self) self = weakSelf;
         [self presentImageFilterEditorWithImage:pickedImage];
+        [self.photoPickerViewController removeFromParent];
     }];
+    self.photoPickerViewController = photoPickerViewController;
     [self addChild:photoPickerViewController];
 }
 
 - (void)presentImageFilterEditorWithImage:(UIImage *)image {
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-    imageView.backgroundColor = UIColor.whiteColor;
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
-    imageView.frame = self.view.bounds;
-    imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self.view addSubview:imageView];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [imageView removeFromSuperview];
-    });
+    PhotoFilterEditorViewController *photoFilterEditor = [PhotoFilterEditorViewController photoFilterEditorWithImage:image andImageFilterService:self.imageFilterService];
+    __weak __typeof(self) weakSelf = self;
+    photoFilterEditor.onRepick = ^{
+        __typeof(self) self = weakSelf;
+        [self presentImagePicker];
+        [self.photoFilterEditorViewController removeFromParent];
+    };
+    self.photoFilterEditorViewController = photoFilterEditor;
+    [self addChild:photoFilterEditor];
 }
 
 @end

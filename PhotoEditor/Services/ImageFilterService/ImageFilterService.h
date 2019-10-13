@@ -10,13 +10,9 @@
 
 @class ImageFilter, UIImage;
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface ImageFilterService : NSObject
 
 - (void)obtainAvailableFilters:(void (^)(NSArray<ImageFilter *> *availableFilters))callback;
-- (void)applyFilter:(ImageFilter *)filter onImage:(UIImage *)image withCallback:(void (^)(UIImage * _Nonnull))callback;
+- (void)applyFilter:(ImageFilter *)filter onImage:(UIImage *)image withCallback:(void (^)(UIImage *newImage))callback;
 
 @end
-
-NS_ASSUME_NONNULL_END

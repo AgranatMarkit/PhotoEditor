@@ -31,6 +31,15 @@
     });
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    dispatch_async(self.captureQueue, ^{
+        [self.captureSession stopRunning];
+        self.captureSession = nil;
+        self.captureQueue = nil;
+    });
+    [super viewDidDisappear:animated];
+}
+
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     self.imagePreviewLayer.frame = self.view.bounds;
@@ -86,12 +95,6 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.view.layer addSublayer:self.imagePreviewLayer];
         self.imagePreviewLayer.frame = self.view.bounds;
-    });
-}
-
-- (void)dealloc {
-    dispatch_async(self.captureQueue, ^{
-        [self.captureSession stopRunning];
     });
 }
 

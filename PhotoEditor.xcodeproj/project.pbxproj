@@ -16,6 +16,7 @@
 		4DBD0463235378B70049A7C7 /* ImageFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBD0462235378B70049A7C7 /* ImageFilter.m */; };
 		4DBD047B2353892A0049A7C7 /* ImageFiltersCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBD047A2353892A0049A7C7 /* ImageFiltersCollectionViewController.m */; };
 		4DBD047F2353895E0049A7C7 /* ImageFilterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBD047E2353895E0049A7C7 /* ImageFilterCollectionViewCell.m */; };
+		4DBD04842353AAEF0049A7C7 /* PhotoFilterEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBD04832353AAEF0049A7C7 /* PhotoFilterEditorViewController.m */; };
 		4DDB4245235327F4003990CD /* PhotoPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB4241235327F4003990CD /* PhotoPickerViewController.m */; };
 		4DDB4246235327F4003990CD /* MainFlowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB4244235327F4003990CD /* MainFlowViewController.m */; };
 		4DDB424A235328C9003990CD /* PhotoPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB4249235328C9003990CD /* PhotoPreviewViewController.m */; };
@@ -39,6 +40,8 @@
 		4DBD047A2353892A0049A7C7 /* ImageFiltersCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageFiltersCollectionViewController.m; sourceTree = "<group>"; };
 		4DBD047D2353895E0049A7C7 /* ImageFilterCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageFilterCollectionViewCell.h; sourceTree = "<group>"; };
 		4DBD047E2353895E0049A7C7 /* ImageFilterCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageFilterCollectionViewCell.m; sourceTree = "<group>"; };
+		4DBD04822353AAEF0049A7C7 /* PhotoFilterEditorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoFilterEditorViewController.h; sourceTree = "<group>"; };
+		4DBD04832353AAEF0049A7C7 /* PhotoFilterEditorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoFilterEditorViewController.m; sourceTree = "<group>"; };
 		4DDB423F235327F4003990CD /* MainFlowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainFlowViewController.h; sourceTree = "<group>"; };
 		4DDB4241235327F4003990CD /* PhotoPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoPickerViewController.m; sourceTree = "<group>"; };
 		4DDB4242235327F4003990CD /* PhotoPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoPickerViewController.h; sourceTree = "<group>"; };
@@ -169,12 +172,22 @@
 			path = ImageFilterCollectionViewCell;
 			sourceTree = "<group>";
 		};
+		4DBD04802353AAB10049A7C7 /* PhotoFilterEditor */ = {
+			isa = PBXGroup;
+			children = (
+				4DBD0478235389130049A7C7 /* ImageFilters */,
+				4DBD04822353AAEF0049A7C7 /* PhotoFilterEditorViewController.h */,
+				4DBD04832353AAEF0049A7C7 /* PhotoFilterEditorViewController.m */,
+			);
+			path = PhotoFilterEditor;
+			sourceTree = "<group>";
+		};
 		4DDB423E235327F4003990CD /* MainFlow */ = {
 			isa = PBXGroup;
 			children = (
+				4DBD04802353AAB10049A7C7 /* PhotoFilterEditor */,
 				4DDB423F235327F4003990CD /* MainFlowViewController.h */,
 				4DDB4244235327F4003990CD /* MainFlowViewController.m */,
-				4DBD0478235389130049A7C7 /* ImageFilters */,
 				4DDB4240235327F4003990CD /* PhotoPicker */,
 			);
 			path = MainFlow;
@@ -272,6 +285,7 @@
 				4D99DDE323523857009B8FA1 /* main.m in Sources */,
 				4DBD0463235378B70049A7C7 /* ImageFilter.m in Sources */,
 				4DDB4245235327F4003990CD /* PhotoPickerViewController.m in Sources */,
+				4DBD04842353AAEF0049A7C7 /* PhotoFilterEditorViewController.m in Sources */,
 				4D99DDD523523854009B8FA1 /* AppDelegate.m in Sources */,
 				4DDB4246235327F4003990CD /* MainFlowViewController.m in Sources */,
 				4DBD047B2353892A0049A7C7 /* ImageFiltersCollectionViewController.m in Sources */,
