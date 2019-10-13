@@ -12,6 +12,8 @@
 		4D99DDDD23523857009B8FA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D99DDDC23523857009B8FA1 /* Assets.xcassets */; };
 		4D99DDE023523857009B8FA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D99DDDE23523857009B8FA1 /* LaunchScreen.storyboard */; };
 		4D99DDE323523857009B8FA1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D99DDE223523857009B8FA1 /* main.m */; };
+		4DBD045E235378550049A7C7 /* ImageFilterService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBD045D235378550049A7C7 /* ImageFilterService.m */; };
+		4DBD0463235378B70049A7C7 /* ImageFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DBD0462235378B70049A7C7 /* ImageFilter.m */; };
 		4DDB4245235327F4003990CD /* PhotoPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB4241235327F4003990CD /* PhotoPickerViewController.m */; };
 		4DDB4246235327F4003990CD /* MainFlowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB4244235327F4003990CD /* MainFlowViewController.m */; };
 		4DDB424A235328C9003990CD /* PhotoPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB4249235328C9003990CD /* PhotoPreviewViewController.m */; };
@@ -27,6 +29,10 @@
 		4D99DDDF23523857009B8FA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4D99DDE123523857009B8FA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D99DDE223523857009B8FA1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4DBD045C235378550049A7C7 /* ImageFilterService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageFilterService.h; sourceTree = "<group>"; };
+		4DBD045D235378550049A7C7 /* ImageFilterService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageFilterService.m; sourceTree = "<group>"; };
+		4DBD0461235378B70049A7C7 /* ImageFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageFilter.h; sourceTree = "<group>"; };
+		4DBD0462235378B70049A7C7 /* ImageFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageFilter.m; sourceTree = "<group>"; };
 		4DDB423F235327F4003990CD /* MainFlowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainFlowViewController.h; sourceTree = "<group>"; };
 		4DDB4241235327F4003990CD /* PhotoPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoPickerViewController.m; sourceTree = "<group>"; };
 		4DDB4242235327F4003990CD /* PhotoPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoPickerViewController.h; sourceTree = "<group>"; };
@@ -87,6 +93,7 @@
 				4D77BF4E235325F90061D59E /* Categories */,
 				4DDB423E235327F4003990CD /* MainFlow */,
 				4D99DDF023524274009B8FA1 /* Resources */,
+				4DBD0459235378320049A7C7 /* Services */,
 			);
 			path = PhotoEditor;
 			sourceTree = "<group>";
@@ -108,6 +115,33 @@
 				4D99DDDE23523857009B8FA1 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		4DBD0459235378320049A7C7 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4DBD045A235378400049A7C7 /* ImageFilterService */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		4DBD045A235378400049A7C7 /* ImageFilterService */ = {
+			isa = PBXGroup;
+			children = (
+				4DBD045C235378550049A7C7 /* ImageFilterService.h */,
+				4DBD045D235378550049A7C7 /* ImageFilterService.m */,
+				4DBD0460235378A60049A7C7 /* ImageFilter */,
+			);
+			path = ImageFilterService;
+			sourceTree = "<group>";
+		};
+		4DBD0460235378A60049A7C7 /* ImageFilter */ = {
+			isa = PBXGroup;
+			children = (
+				4DBD0461235378B70049A7C7 /* ImageFilter.h */,
+				4DBD0462235378B70049A7C7 /* ImageFilter.m */,
+			);
+			path = ImageFilter;
 			sourceTree = "<group>";
 		};
 		4DDB423E235327F4003990CD /* MainFlow */ = {
@@ -209,10 +243,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D99DDE323523857009B8FA1 /* main.m in Sources */,
+				4DBD0463235378B70049A7C7 /* ImageFilter.m in Sources */,
 				4DDB4245235327F4003990CD /* PhotoPickerViewController.m in Sources */,
 				4D99DDD523523854009B8FA1 /* AppDelegate.m in Sources */,
 				4DDB4246235327F4003990CD /* MainFlowViewController.m in Sources */,
 				4DDB424A235328C9003990CD /* PhotoPreviewViewController.m in Sources */,
+				4DBD045E235378550049A7C7 /* ImageFilterService.m in Sources */,
 				4D77BF52235325F90061D59E /* UIViewController+ContainerViewHelpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
