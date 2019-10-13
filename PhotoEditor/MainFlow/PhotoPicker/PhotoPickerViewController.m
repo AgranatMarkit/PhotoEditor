@@ -45,7 +45,7 @@ static CGFloat const buttonSide = 60.f;
     
     self.takePhotoButton = UIButton.new;
     [self.takePhotoButton setBackgroundColor:UIColor.whiteColor];
-    [self.takePhotoButton setImage:[UIImage imageNamed:@"Photo"] forState:UIControlStateNormal];
+    [self.takePhotoButton setImage:[UIImage imageNamed:@"photo"] forState:UIControlStateNormal];
     [self.takePhotoButton addTarget:self action:@selector(takePhoto) forControlEvents:UIControlEventTouchUpInside];
     self.takePhotoButton.layer.cornerRadius = buttonSide / 2;
     

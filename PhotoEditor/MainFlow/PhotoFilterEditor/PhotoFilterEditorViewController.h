@@ -10,6 +10,11 @@
 
 @class ImageFilterService;
 
+/// Filter Editor.
+/// Contain:
+/// - Filter list allow select and apply filter.
+/// - Repick button allow return to photo picker.
+/// - Share button share edited image.
 @interface PhotoFilterEditorViewController : UIViewController
 
 @property (nonatomic) void (^onRepick)(void);

@@ -10,6 +10,9 @@
 
 typedef void(^OnImagePick)(UIImage *pickedImage);
 
+/// Screen with two buttons:
+/// - Photo button to take image from camera.
+/// - Gallery button to take image from gallery.
 @interface PhotoPickerViewController : UIViewController
 
 - (instancetype)init NS_UNAVAILABLE;

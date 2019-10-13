@@ -156,9 +156,9 @@
 		4DBD0478235389130049A7C7 /* ImageFilters */ = {
 			isa = PBXGroup;
 			children = (
-				4DBD047C235389300049A7C7 /* ImageFilterCollectionViewCell */,
 				4DBD04792353892A0049A7C7 /* ImageFiltersCollectionViewController.h */,
 				4DBD047A2353892A0049A7C7 /* ImageFiltersCollectionViewController.m */,
+				4DBD047C235389300049A7C7 /* ImageFilterCollectionViewCell */,
 			);
 			path = ImageFilters;
 			sourceTree = "<group>";
@@ -175,9 +175,9 @@
 		4DBD04802353AAB10049A7C7 /* PhotoFilterEditor */ = {
 			isa = PBXGroup;
 			children = (
-				4DBD0478235389130049A7C7 /* ImageFilters */,
 				4DBD04822353AAEF0049A7C7 /* PhotoFilterEditorViewController.h */,
 				4DBD04832353AAEF0049A7C7 /* PhotoFilterEditorViewController.m */,
+				4DBD0478235389130049A7C7 /* ImageFilters */,
 			);
 			path = PhotoFilterEditor;
 			sourceTree = "<group>";
@@ -185,9 +185,9 @@
 		4DDB423E235327F4003990CD /* MainFlow */ = {
 			isa = PBXGroup;
 			children = (
-				4DBD04802353AAB10049A7C7 /* PhotoFilterEditor */,
 				4DDB423F235327F4003990CD /* MainFlowViewController.h */,
 				4DDB4244235327F4003990CD /* MainFlowViewController.m */,
+				4DBD04802353AAB10049A7C7 /* PhotoFilterEditor */,
 				4DDB4240235327F4003990CD /* PhotoPicker */,
 			);
 			path = MainFlow;

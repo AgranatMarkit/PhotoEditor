@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Main flow view controller. Decide which screen to show.
 @interface MainFlowViewController : UIViewController
 
 @end

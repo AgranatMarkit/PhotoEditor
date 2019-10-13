@@ -14,6 +14,8 @@
 
 typedef void(^OnSelectFilter)(ImageFilter *selectedFilter);
 
+/// Filter list.
+/// Allow select filter.
 @interface ImageFiltersCollectionViewController : UICollectionViewController
 
 @property (nonatomic) OnSelectFilter onSelectFilter;

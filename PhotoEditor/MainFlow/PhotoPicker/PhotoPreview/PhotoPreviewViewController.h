@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /// Display data from camera.
-/// Allow obtain image data
+/// Allow obtain image data.
 @interface PhotoPreviewViewController : UIViewController
 
 - (void)obtainImageData:(void (^)(NSData *imageData))callback;
