@@ -22,6 +22,8 @@
 
 @implementation PhotoPickerViewController
 
+static CGFloat const buttonSide = 60.f;
+
 + (instancetype)pickerWithOnImagePick:(OnImagePick)onImagePick {
     PhotoPickerViewController *photoPickerViewController = PhotoPickerViewController.new;
     photoPickerViewController.onImagePick = onImagePick;
@@ -36,12 +38,6 @@
     [self addChild:self.photoPreviewViewController toContainerView:self.previewView];
 }
 
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    self.takePhotoButton.layer.cornerRadius = CGRectGetHeight(self.takePhotoButton.bounds) / 2;
-    self.openGalleryButton.layer.cornerRadius = CGRectGetHeight(self.openGalleryButton.bounds) / 2;
-}
-
 - (void)setupViews {
     self.view.backgroundColor = UIColor.blackColor;
     
@@ -49,50 +45,45 @@
     
     self.takePhotoButton = UIButton.new;
     [self.takePhotoButton setBackgroundColor:UIColor.whiteColor];
+    [self.takePhotoButton setImage:[UIImage imageNamed:@"Photo"] forState:UIControlStateNormal];
     [self.takePhotoButton addTarget:self action:@selector(takePhoto) forControlEvents:UIControlEventTouchUpInside];
+    self.takePhotoButton.layer.cornerRadius = buttonSide / 2;
     
     self.openGalleryButton = UIButton.new;
     [self.openGalleryButton setBackgroundColor:UIColor.whiteColor];
     [self.openGalleryButton setImage:[UIImage imageNamed:@"Gallery"] forState:UIControlStateNormal];
     [self.openGalleryButton addTarget:self action:@selector(openGallery) forControlEvents:UIControlEventTouchUpInside];
+    self.openGalleryButton.layer.cornerRadius = buttonSide / 2;
 }
 
 - (void)setupLayout {
     self.previewView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.previewView];
-    NSLayoutConstraint *previewViewLeading = [self.previewView.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor];
-    NSLayoutConstraint *previewViewTop = [self.previewView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor];
-    NSLayoutConstraint *previewViewTrailing = [self.view.safeAreaLayoutGuide.trailingAnchor constraintEqualToAnchor:self.previewView.trailingAnchor];
 
+    UIStackView *buttonsStackView = UIStackView.new;
+    buttonsStackView.axis = UILayoutConstraintAxisHorizontal;
+    buttonsStackView.distribution = UIStackViewDistributionFill;
+    buttonsStackView.spacing = 8.f;
+    buttonsStackView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:buttonsStackView];
     
     self.takePhotoButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:self.takePhotoButton];
-    NSLayoutConstraint *takePhotoButtonTop = [self.takePhotoButton.topAnchor constraintEqualToAnchor:self.previewView.bottomAnchor constant:8.f];
-    NSLayoutConstraint *takePhotoButtonBottom = [self.view.safeAreaLayoutGuide.bottomAnchor constraintEqualToAnchor:self.takePhotoButton.bottomAnchor constant:8.f];
-    NSLayoutConstraint *takePhotoButtonCenterX = [self.takePhotoButton.centerXAnchor constraintEqualToAnchor:self.previewView.centerXAnchor];
-    NSLayoutConstraint *takePhotoButtonHeight = [self.takePhotoButton.heightAnchor constraintEqualToConstant:60.f];
-    NSLayoutConstraint *takePhotoButtonWidth = [self.takePhotoButton.widthAnchor constraintEqualToConstant:60.f];
+    [buttonsStackView addArrangedSubview:self.takePhotoButton];
     
     self.openGalleryButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:self.openGalleryButton];
-    NSLayoutConstraint *openGalleryButtonLeading = [self.openGalleryButton.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor constant:8.f];
-    NSLayoutConstraint *openGalleryButtonHeight = [self.openGalleryButton.heightAnchor constraintEqualToAnchor:self.takePhotoButton.heightAnchor];
-    NSLayoutConstraint *openGalleryButtonWidth = [self.openGalleryButton.widthAnchor constraintEqualToAnchor:self.takePhotoButton.widthAnchor];
-    NSLayoutConstraint *openGalleryButtonCenterY = [self.openGalleryButton.centerYAnchor constraintEqualToAnchor:self.takePhotoButton.centerYAnchor];
+    [buttonsStackView addArrangedSubview:self.openGalleryButton];
     
     [NSLayoutConstraint activateConstraints:@[
-        previewViewLeading,
-        previewViewTop,
-        previewViewTrailing,
-        takePhotoButtonTop,
-        takePhotoButtonBottom,
-        takePhotoButtonCenterX,
-        takePhotoButtonHeight,
-        takePhotoButtonWidth,
-        openGalleryButtonLeading,
-        openGalleryButtonHeight,
-        openGalleryButtonWidth,
-        openGalleryButtonCenterY
+        [self.previewView.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor],
+        [self.previewView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor],
+        [self.previewView.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor],
+        [buttonsStackView.centerXAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.centerXAnchor],
+        [buttonsStackView.topAnchor constraintEqualToAnchor:self.previewView.bottomAnchor constant:8.f],
+        [buttonsStackView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor constant:-8.f],
+        [self.takePhotoButton.heightAnchor constraintEqualToConstant:buttonSide],
+        [self.takePhotoButton.widthAnchor constraintEqualToConstant:buttonSide],
+        [self.openGalleryButton.heightAnchor constraintEqualToConstant:buttonSide],
+        [self.openGalleryButton.widthAnchor constraintEqualToConstant:buttonSide],
     ]];
 }
 
