@@ -83,6 +83,12 @@
     self.captureSession.sessionPreset = AVCaptureSessionPresetPhoto;
     AVCaptureDevice *backCamera = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:backCamera error:nil];
+    if (!input) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showNeedPermissions];
+        });
+        return;
+    }
     self.imageOutput = AVCapturePhotoOutput.new;
     [self.captureSession addInput:input];
     [self.captureSession addOutput:self.imageOutput];
@@ -96,6 +102,16 @@
         [self.view.layer addSublayer:self.imagePreviewLayer];
         self.imagePreviewLayer.frame = self.view.bounds;
     });
+}
+
+- (void)showNeedPermissions {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Please provide photo permission." preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Settings" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [UIApplication.sharedApplication openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString] options:@{} completionHandler:^(BOOL success) {}];
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    }]];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end
