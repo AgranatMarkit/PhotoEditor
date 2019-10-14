@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addChild:(UIViewController *)child;
 - (void)addChild:(UIViewController *)child toContainerView:(UIView *)containerView;
 - (void)removeFromParent;
+- (void)flipFromViewController:(UIViewController *)oldVC toViewController:(UIViewController *)newVC completion:(void (^)(void))completion;
 
 @end
 

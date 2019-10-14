@@ -15,8 +15,7 @@
 @interface MainFlowViewController ()
 
 @property (nonatomic) ImageFilterService *imageFilterService;
-@property (nonatomic, weak) PhotoPickerViewController *photoPickerViewController;
-@property (nonatomic, weak) PhotoFilterEditorViewController *photoFilterEditorViewController;
+@property (nonatomic, weak) UIViewController *displayedViewController;
 
 @end
 
@@ -32,24 +31,22 @@
 - (void)presentImagePicker {
     __weak __typeof(self) weakSelf = self;
     PhotoPickerViewController *photoPickerViewController = [PhotoPickerViewController pickerWithOnImagePick:^(UIImage *pickedImage) {
-        __typeof(self) self = weakSelf;
-        [self presentImageFilterEditorWithImage:pickedImage];
-        [self.photoPickerViewController removeFromParent];
+        [weakSelf presentImageFilterEditorWithImage:pickedImage];
     }];
-    self.photoPickerViewController = photoPickerViewController;
-    [self addChild:photoPickerViewController];
+    [self flipFromViewController:self.displayedViewController toViewController:photoPickerViewController completion:^{
+        weakSelf.displayedViewController = photoPickerViewController;
+    }];
 }
 
 - (void)presentImageFilterEditorWithImage:(UIImage *)image {
-    PhotoFilterEditorViewController *photoFilterEditor = [PhotoFilterEditorViewController photoFilterEditorWithImage:image andImageFilterService:self.imageFilterService];
     __weak __typeof(self) weakSelf = self;
+    PhotoFilterEditorViewController *photoFilterEditor = [PhotoFilterEditorViewController photoFilterEditorWithImage:image andImageFilterService:self.imageFilterService];
     photoFilterEditor.onRepick = ^{
-        __typeof(self) self = weakSelf;
-        [self presentImagePicker];
-        [self.photoFilterEditorViewController removeFromParent];
+        [weakSelf presentImagePicker];
     };
-    self.photoFilterEditorViewController = photoFilterEditor;
-    [self addChild:photoFilterEditor];
+    [self flipFromViewController:self.displayedViewController toViewController:photoFilterEditor completion:^{
+        weakSelf.displayedViewController = photoFilterEditor;
+    }];
 }
 
 @end
